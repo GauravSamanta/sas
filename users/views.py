@@ -12,7 +12,9 @@ from .decorators import hod_allowed
 
 @login_required(login_url='/')
 def index(request):
+    print(str(request))
     uDept = request.user.department
+    print(uDept)
     teachers = TeacherProfile.objects.filter(user__department=uDept)
     context = {
         'title': 'Teachers',
@@ -87,7 +89,7 @@ def update(request, id):
                 print('user valid')
                 userForm.save()
                 if teacherForm.is_valid():
-                    print('vali')
+                    print('valid')
                     teacherForm.save()
             # except Exception as e:
             #     print(e)
